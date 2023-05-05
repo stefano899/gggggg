@@ -1,8 +1,11 @@
-package org.openjfx.InetecSRL;
+package org.openjfx.InetecSRL.controller;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+
+import org.openjfx.InetecSRL.domain.User;
+import org.openjfx.InetecSRL.logicaDiBusiness.UserDatabase;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -22,7 +25,7 @@ public class Registration extends Application {
 	private String email = "";
 	private String password = "";
 	private Label statusLabel;
-	private UserDatabase userDatabase = new UserDatabase("registration.txt");
+	private UserDatabase userDatabase = new UserDatabase("src/main/resources/org/openjfx/database/registration.txt");
 
 	@Override
 	public void start(@SuppressWarnings("exports") Stage primaryStage) throws Exception{
@@ -53,6 +56,10 @@ public class Registration extends Application {
 		root.getChildren().addAll(nameLabel, nameField, surnameLabel, surnameField, emailLabel, emailField, passwordLabel, passwordField, statusLabel = new Label());
 		
 		Button registerButton = new Button ("Registra");
+		registerButton.disableProperty().bind(nameField.textProperty().isEmpty());
+		registerButton.disableProperty().bind(surnameField.textProperty().isEmpty());
+		registerButton.disableProperty().bind(emailField.textProperty().isEmpty());
+		registerButton.disableProperty().bind(passwordField.textProperty().isEmpty());
 		registerButton.setOnAction(e ->{
 			name = nameField.getText();
 			surname = surnameField.getText();
@@ -60,7 +67,7 @@ public class Registration extends Application {
 			password = passwordField.getText();
 			Boolean control = true;
 			
-			try (BufferedReader reader = new BufferedReader(new FileReader("registration.txt"))){
+			try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/org/openjfx/database/registration.txt"))){
 	        	String line;
 	        	
 	        	while ((line = reader.readLine()) != null) {
@@ -90,7 +97,7 @@ public class Registration extends Application {
 		
 		Button loginButton = new Button("Già registrato, premi qui");
 		loginButton.setOnAction(e -> {
-			Login login = new Login("registration.txt");
+			Login login = new Login("src/main/resources/org/openjfx/database/registration.txt");
 			login.start(primaryStage);
 		});
 		

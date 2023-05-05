@@ -1,0 +1,6 @@
+nome,cognome,email,password
+alessio,di bartolomeo,alessiomdb@live.com,asdsgdfgdfhg
+a,a,a,a
+a,a,ab,a
+a,a,abc,a
+bob,bob,bob,bob

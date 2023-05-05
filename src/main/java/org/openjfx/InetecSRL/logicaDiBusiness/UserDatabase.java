@@ -1,12 +1,17 @@
-package org.openjfx.InetecSRL;
+package org.openjfx.InetecSRL.logicaDiBusiness;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
+import org.openjfx.InetecSRL.domain.User;
 
 public class UserDatabase {
 	private String filename;
@@ -43,6 +48,27 @@ public class UserDatabase {
 			System.out.println("Errore durante la lettura del file");
 		}
 		return users;
+	}
+	
+	public User findUser (String email) {
+		String searchUser = email;
+		
+		File file = new File("src/main/resources/org/openjfx/database/registration.txt");
+		
+		try {
+			Scanner input = new Scanner (file);
+			while (input.hasNextLine()) {
+				String line = input.nextLine();
+				String parts[] = line.split(",");
+				if (parts[2].equals(searchUser)) {
+					User user = new User(parts[0], parts[1], parts[2], parts[3]);
+					return user;
+				}
+			}
+		} catch (FileNotFoundException ex) {
+			System.out.println("File non trovato: " + ex.getMessage());
+		}
+		return null;
 	}
 	
 }

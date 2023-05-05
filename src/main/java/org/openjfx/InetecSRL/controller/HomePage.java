@@ -1,4 +1,4 @@
-package org.openjfx.InetecSRL;
+package org.openjfx.InetecSRL.controller;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -11,7 +11,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
 
 public class HomePage extends Application {
     
@@ -33,7 +32,7 @@ public class HomePage extends Application {
         login.setPrefWidth(120);
         login.setOnAction(e -> {
             // Apre la finestra di login quando il pulsante viene cliccato
-            Login loginWindow = new Login("registration.txt");
+            Login loginWindow = new Login("src/main/resources/org/openjfx/database/registration.txt");
             loginWindow.start(primaryStage);
         });
         HBox topMenu = new HBox(10);
@@ -77,3 +76,4 @@ public class HomePage extends Application {
         launch(args);
     }
 }
+

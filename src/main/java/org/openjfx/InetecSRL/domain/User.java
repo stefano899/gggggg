@@ -1,4 +1,4 @@
-package org.openjfx.InetecSRL;
+package org.openjfx.InetecSRL.domain;
 
 public class User {
 	private int id = 0;

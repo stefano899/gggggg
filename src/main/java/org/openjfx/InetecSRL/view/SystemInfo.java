@@ -1,4 +1,4 @@
-package org.openjfx.InetecSRL;
+package org.openjfx.InetecSRL.view;
 
 public class SystemInfo {
 
